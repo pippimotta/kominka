@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bulma.min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
+  
     <title>My Nice Page</title>
     <style>
         .my-footer {
@@ -111,18 +111,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
     <script src="https://unpkg.com/notie"></script>
-  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
 
      document.getElementById("test-btn").addEventListener("click",()=>{
         // alertNotify("I am clicked","error")
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          confirmaButtonText:"Cool"
-      
-        })
+        notifyModal("Success","You got it","success","Confirm")
      })
 
       (function () {
@@ -150,16 +145,24 @@ const rangepicker = new DateRangePicker(elem, {
   format:"yyyy-mm-dd"
 }); 
 
-function alertNotify(msg,msgType){
+function notify(msg,msgType){
   notie.alert({
   type: msgType, 
   text: msg,
   })
 }
 
+function notifyModal(title, text, icon, confirmButtonText){
+  Swal.fire({
+          icon: icon,
+          title: title,
+          text: text,
+          confirmButtonText:confirmButtonText
+      
+        })
+}
 
    
     </script>
-     <script src="sweetalert2.all.min.js"></script>
   </body>
 </html>
