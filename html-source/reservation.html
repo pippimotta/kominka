@@ -114,11 +114,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-
+      let attention = Prompt()
      document.getElementById("test-btn").addEventListener("click",()=>{
-        // alertNotify("I am clicked","error")
-        notifyModal("Success","You got it","success","Confirm")
-     })
+        // attention.toast({msg:"Hello World!", icon:"error"})
+        // attention.success({msg:"Hello World!", title:"HI"});
+        attention.error({msg:"Oops!"})
+     });
 
       (function () {
   'use strict'
@@ -162,6 +163,67 @@ function notifyModal(title, text, icon, confirmButtonText){
         })
 }
 
+function Prompt(){
+  let toast = function(c){
+    const {
+      msg= "",
+      icon="success",
+      position="top-end"
+
+    } = c
+      const Toast = Swal.mixin({
+      toast: true,
+      title:msg,
+      position: position,
+      icon:icon,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({})
+  }
+
+
+  let success = function(c){
+    const {
+      msg= "",
+      title="",
+      footer="",
+    } = c;
+
+    Swal.fire({
+        icon: 'success',
+        title: title,
+        text: msg,
+        footer: footer,
+    })
+  }
+  let error = function(c){
+    const {
+      msg= "",
+      title="",
+      footer="",
+    } = c;
+
+    Swal.fire({
+        icon: 'error',
+        title: title,
+        text: msg,
+        footer: footer,
+    })
+  }
+
+
+  return {
+    toast:toast,
+    success:success,
+    error:error,
+  }
+}
    
     </script>
   </body>
