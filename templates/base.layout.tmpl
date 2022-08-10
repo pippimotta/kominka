@@ -82,27 +82,15 @@
   {{end}}
   <script>
     let attention = Prompt()
-   document.getElementById("test-btn").addEventListener("click",()=>{
-      let html = `
-      
-<form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
-<div class="d-flex flex-row justify-content-evenly" id="reservation-dates-modal">
-  <div class="p-2">
-    <input  required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
-  </div>
 
-  <div class="p-2">
-    <input  required class="form-control" type="text" name="end" id="end" placeholder="Departure">
-  </div>
-</div>
-</form>
-      `
-      attention.custom({msg:html, title:"choose your date."})
-   });
+const elem = document.getElementById('reservation-dates');
+const rangepicker = new DateRangePicker(elem, {
+format:"yyyy-mm-dd",
+}); 
 
-    (function () {
+
+(function () {
 'use strict'
-
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 let forms = document.querySelectorAll('.needs-validation')
 
@@ -120,11 +108,7 @@ Array.prototype.slice.call(forms)
   })
 })()
 
-const elem = document.getElementById('reservation-dates');
-const rangepicker = new DateRangePicker(elem, {
-format:"yyyy-mm-dd",
 
-}); 
 
 function notify(msg,msgType){
 notie.alert({
@@ -217,7 +201,7 @@ didOpen: () => {
               format: 'yyyy-mm-dd',
               autohide:true,
               orientation:"auto",
-           
+              autofocus:false,
           })
       },
       preConfirm: () => {
