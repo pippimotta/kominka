@@ -24,9 +24,17 @@
               </div>
               <button type="submit" class="btn btn-primary">Search</button>
               </form>
-              <button id="test-btn" class="btn btn-primary">Test</button>
         </div>
         
     </div>
   </div>
+{{end}}
+
+{{define "js"}}
+<script>
+const elem = document.getElementById('reservation-dates');
+const rangepicker = new DateRangePicker(elem, {
+format:"yyyy-mm-dd",
+}); 
+</script>
 {{end}}
