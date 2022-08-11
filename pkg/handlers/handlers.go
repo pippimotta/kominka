@@ -1,6 +1,9 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/pippimotta/kominka/pkg/config"
@@ -32,7 +35,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 
 	remoteIP := r.RemoteAddr //get the ip address from request
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
-	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.tmpl", &models.TemplateData{})
 
 }
 
@@ -46,32 +49,62 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	stringMap["remote_ip"] = remoteIP
 	//send the data to the template
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
 
 //render the reservation page and the form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
 }
 
 //renders the room page general
 func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "generals.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "generals.page.tmpl", &models.TemplateData{})
 }
 
 //render the room page major
 func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "majors.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "majors.page.tmpl", &models.TemplateData{})
 }
 
 //search availability
 func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "search-availability.page.tmpl", &models.TemplateData{})
 }
 
 //contact
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "contact.page.tmpl", &models.TemplateData{})
+}
+
+//PostAvailability
+func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
+	start := r.Form.Get("start")
+	end := r.Form.Get("end")
+
+	w.Write([]byte(fmt.Sprintf("Start date is %s and end date is %s", start, end)))
+}
+
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+//AvailabilityJSON handles request for availability and send JSON response
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+	resp := jsonResponse{
+		OK:      true,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "     ")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// log.Println(string(out))
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
 }
