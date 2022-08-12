@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/pippimotta/kominka/internal/config"
 	"github.com/pippimotta/kominka/internal/handlers"
+	"github.com/pippimotta/kominka/internal/models"
 	"github.com/pippimotta/kominka/internal/render"
 )
 
@@ -19,7 +21,8 @@ const portNumber = ":8080"
 var session *scs.SessionManager
 
 func main() {
-
+	//What I am going to put in the session
+	gob.Register(models.Reservation{})
 	//change this to true when in production
 	app.InProduction = false
 	session = scs.New()
