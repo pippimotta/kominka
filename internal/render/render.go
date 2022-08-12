@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 
 	"github.com/justinas/nosurf"
-	"github.com/pippimotta/kominka/pkg/config"
-	"github.com/pippimotta/kominka/pkg/models"
+	"github.com/pippimotta/kominka/internal/config"
+	"github.com/pippimotta/kominka/internal/models"
 )
 
 var app *config.AppConfig

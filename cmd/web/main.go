@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/pippimotta/kominka/pkg/config"
-	"github.com/pippimotta/kominka/pkg/handlers"
-	"github.com/pippimotta/kominka/pkg/render"
+	"github.com/pippimotta/kominka/internal/config"
+	"github.com/pippimotta/kominka/internal/handlers"
+	"github.com/pippimotta/kominka/internal/render"
 )
 
 var app config.AppConfig
@@ -54,24 +54,3 @@ func main() {
 	log.Fatal(err)
 
 }
-
-/*
-func divide(w http.ResponseWriter, r *http.Request) {
-	f, err := divideValues(100.0, 0.0)
-	if err != nil {
-		fmt.Fprintf(w, "Cannot divided by 0")
-		return
-	}
-	fmt.Fprintf(w, "%f divided by %f is %f", 100.0, 10.0, f)
-}
-
-func divideValues(x, y float32) (float32, error) {
-	if y <= 0 {
-		err := errors.New("cannot divided by zero")
-		return 0, err
-	}
-
-	result := x / y
-	return result, nil
-}
-*/

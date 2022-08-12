@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/pippimotta/kominka/pkg/config"
-	"github.com/pippimotta/kominka/pkg/handlers"
+	"github.com/pippimotta/kominka/internal/config"
+	"github.com/pippimotta/kominka/internal/handlers"
 )
 
 func routes(app *config.AppConfig) http.Handler {

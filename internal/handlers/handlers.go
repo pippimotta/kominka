@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/pippimotta/kominka/pkg/config"
-	"github.com/pippimotta/kominka/pkg/models"
-	"github.com/pippimotta/kominka/pkg/render"
+	"github.com/pippimotta/kominka/internal/config"
+	"github.com/pippimotta/kominka/internal/models"
+	"github.com/pippimotta/kominka/internal/render"
 )
 
 //Repo the repository used by the handlers
