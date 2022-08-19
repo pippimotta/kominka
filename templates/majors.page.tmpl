@@ -28,27 +28,52 @@
 {{end}}
 
 {{define "js"}}
-<script>
-
-document.getElementById("check-availability-btn").addEventListener("click",()=>{
-  let html = `
-  
-        <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
-        <div class="d-flex flex-row justify-content-evenly" id="reservation-dates-modal">
+  <script>
+    document.getElementById("check-availability-btn").addEventListener("click",()=>{
+      let html = `
+      
+      <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
+      <div class="d-flex flex-row justify-content-evenly" id="reservation-dates-modal">
         <div class="p-2">
-        <input  required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
+          <input  required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
         </div>
 
         <div class="p-2">
-        <input  required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+          <input  required class="form-control" type="text" name="end" id="end" placeholder="Departure">
         </div>
-        </div>
-        </form>
-          `
-  attention.custom({
-    msg:html, 
-    title:"choose your date."
-  })
-});
-</script>
+      </div>
+      </form>
+      `
+      attention.custom({
+        msg:html,
+        title:"Choose your dates.",
+        callback: (result) => {
+          console.log("called");
+
+          let form = document.getElementById("check-availability-form")
+          let formData = new FormData(form)
+
+          formData.append("csrf_token","{{.CSRFToken}}")
+          fetch("/search-availability-json",{
+            method:"post",
+            body:formData,
+          })
+            .then(res =>res.json())
+            .then(data =>{
+              console.log(data.ok,data.message);
+            })
+        },
+        didOpen: () => {
+                const elem = document.getElementById("reservation-dates-modal");
+                const rp = new DateRangePicker(elem, {
+                    format: 'yyyy-mm-dd',
+                    autohide:true,
+                    orientation:"auto",
+                })
+            }
+      });
+   });
+  </script>
 {{end}}
+  
+ 

@@ -1,0 +1,23 @@
+mode: set
+github.com/pippimotta/kominka/internal/render/render.go:21.40,23.2 1 1
+github.com/pippimotta/kominka/internal/render/render.go:25.84,31.2 5 1
+github.com/pippimotta/kominka/internal/render/render.go:34.105,37.18 2 1
+github.com/pippimotta/kominka/internal/render/render.go:43.2,45.9 2 1
+github.com/pippimotta/kominka/internal/render/render.go:49.2,56.16 5 1
+github.com/pippimotta/kominka/internal/render/render.go:60.2,60.12 1 1
+github.com/pippimotta/kominka/internal/render/render.go:37.18,39.3 1 0
+github.com/pippimotta/kominka/internal/render/render.go:39.8,41.3 1 1
+github.com/pippimotta/kominka/internal/render/render.go:45.9,48.3 1 1
+github.com/pippimotta/kominka/internal/render/render.go:56.16,59.3 2 0
+github.com/pippimotta/kominka/internal/render/render.go:68.67,73.16 3 1
+github.com/pippimotta/kominka/internal/render/render.go:79.2,79.29 1 1
+github.com/pippimotta/kominka/internal/render/render.go:102.2,102.21 1 1
+github.com/pippimotta/kominka/internal/render/render.go:73.16,75.3 1 0
+github.com/pippimotta/kominka/internal/render/render.go:79.29,83.17 3 1
+github.com/pippimotta/kominka/internal/render/render.go:87.3,89.17 2 1
+github.com/pippimotta/kominka/internal/render/render.go:93.3,93.23 1 1
+github.com/pippimotta/kominka/internal/render/render.go:99.3,99.21 1 1
+github.com/pippimotta/kominka/internal/render/render.go:83.17,85.4 1 0
+github.com/pippimotta/kominka/internal/render/render.go:89.17,91.4 1 0
+github.com/pippimotta/kominka/internal/render/render.go:93.23,95.18 2 1
+github.com/pippimotta/kominka/internal/render/render.go:95.18,97.5 1 0
