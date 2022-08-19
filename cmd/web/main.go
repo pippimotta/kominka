@@ -5,16 +5,21 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/pippimotta/kominka/internal/config"
 	"github.com/pippimotta/kominka/internal/handlers"
+	"github.com/pippimotta/kominka/internal/helpers"
 	"github.com/pippimotta/kominka/internal/models"
 	"github.com/pippimotta/kominka/internal/render"
 )
 
 var app config.AppConfig
+
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 const portNumber = ":8080"
 
@@ -42,6 +47,12 @@ func run() error {
 	gob.Register(models.Reservation{})
 	//change this to true when in production
 	app.InProduction = false
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+
+	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
@@ -64,5 +75,7 @@ func run() error {
 	handlers.NewHandlers(repo)
 
 	render.NewTemplates(&app)
+
+	helpers.NewHelpers(&app)
 	return nil
 }
